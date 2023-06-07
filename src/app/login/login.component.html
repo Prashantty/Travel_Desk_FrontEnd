@@ -1,0 +1,61 @@
+<!-- <form #regForm="ngForm" (ngSubmit)="Register(regForm)">
+    <div>
+        <label for="txtName"> Email :</label>
+        <input type="text" name="txtName" ngModel  
+        required maxlength="20" minlength="5" #name="ngModel"/>
+        <div *ngIf="name.touched && name.invalid">
+            <div *ngIf="name.errors?.['required']">
+                Name is must
+            </div>
+            <div *ngIf="name.errors?.['maxlength']">
+                Max 20 
+            </div>
+            <div *ngIf="name.errors?.['minlength']">
+              Min 5 cgar
+            </div>
+        </div>
+        <label for="txtName"> Password : </label>
+        <input type="text" name="passname" ngModel  
+        required maxlength="20" minlength="5" #name="ngModel"/>
+        <div *ngIf="name.touched && name.invalid">
+            <div *ngIf="name.errors?.['required']">
+                Name is must
+            </div>
+            <div *ngIf="name.errors?.['maxlength']">
+                Max 20 
+            </div>
+            <div *ngIf="name.errors?.['minlength']">
+              Min 5 cgar
+            </div>
+    </div>
+    </div>
+
+    <button type="submit" [disabled]='regForm.invalid' (click)="Login(regForm) "> Login </button>
+</form> -->
+
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form #regForm="ngForm" (ngSubmit)="Register(regForm)">
+        <input type="text" id="login" class="fadeIn second" name="txtName" placeholder="login">
+        <input type="text" id="password" class="fadeIn third" name="passname" placeholder="password">
+        <input type="submit" [disabled]='regForm.invalid' (click)="Login(regForm)"s  class="fadeIn fourth" >
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>
+
+
