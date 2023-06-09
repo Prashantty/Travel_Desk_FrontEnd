@@ -1,6 +1,6 @@
 import { Component , OnInit} from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
-import { Credential } from '../Credential';
+import { AuthenticationService } from '../Services/authentication.service';
+import { Credential } from '../Interface/Credential';
 
 @Component({
   selector: 'app-login',
@@ -24,9 +24,14 @@ credential : Credential = {Email:0, Password:0};
   {
     this.credential = {Email:regForm.controls.txtName.value, Password:regForm.controls.passname.value};
      this._auth.Authenticate(this.credential).subscribe(res=>
-      console.log(res))
-      
+      {
+      token : String;
+      console.log(res)
+      localStorage.setItem("token", JSON.stringify(res));
+  })
     console.log("inside Authenticate ");
+    
+
   }
 
   Register(regForm:any)

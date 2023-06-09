@@ -1,0 +1,18 @@
+<h1>---Welcome---</h1>
+<h3> Login  </h3>
+
+<!-- <a routerLink="/login"> login</a> -->
+
+<div *ngIf="loggedIn;then Login; else NoLogin"></div>
+<ng-template #Login>
+    <a routerLink="/home-nav">Home</a>
+    <a routerLink="/UserRoleMapping">UserRoleMapping</a>
+    <button type="button" (click)="logout()" >LogOut</button>         
+
+</ng-template>  
+
+<ng-template #NoLogin>
+    <a routerLink="/login"> login</a>
+
+</ng-template>
+<router-outlet> </router-outlet>
