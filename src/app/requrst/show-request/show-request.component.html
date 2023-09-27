@@ -1,0 +1,125 @@
+
+
+
+<div class="container">
+    <div class="search-bar">
+        <input type="text" [(ngModel)]="searchText" placeholder="Search by User First Name" />
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <!-- <th>Request ID</th> -->
+                <!-- <th>id</th> -->
+                <th>User's First Name</th>
+                <th>Project Name</th>
+                <th style="background-color: #c2c2c2;
+                color: #292929;font-weight: bold ;font-weight: 600;
+">Status</th>
+                <th>Manager's First Name</th>
+                <th>Reason for Traveling</th>
+                <th>Type of Booking</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            <div *ngIf="Role === 'Employee'; then employee; else manager"></div>
+            <ng-template #employee>
+                <tr *ngFor="let request of pagedRequests1">
+                    <!-- <td>{{ request.Id }}</td> -->
+                    <!-- <td>{{ request.requestID}}</td> -->
+                    <td>{{ request.userFirstName }}</td>
+                    <td>{{ request.projectName }}</td>
+                    <div *ngIf= "request.statusValue === 'Rejected';then red ; else nored"></div>
+                    <ng-template #red>
+                        <td style="color: #ff3e3e;font-weight: 600; ">{{ request.statusValue }}</td>
+                    </ng-template>
+    
+                    <ng-template #nored>
+                        <td style="color: #bd9a01;font-weight: 600 ">{{ request.statusValue }}</td>
+                    </ng-template>
+    
+                    
+                    <td>{{ request.managerFirstName }}</td>
+                    <td>{{ request.reasonForTraveling }}</td>
+                    <td>{{ request.bookingType }}</td>
+    
+                </tr>
+            </ng-template>
+            <ng-template #manager>
+                <tr *ngFor="let request of pagedRequests">
+                    <!-- <td>{{ request.Id }}</td> -->
+                    <!-- <td>{{ request.requestID}}</td> -->
+                    <td>{{ request.userFirstName }}</td>
+                    <td>{{ request.projectName }}</td>
+                    <div *ngIf= "request.statusValue === 'Rejected';then red ; else nored"></div>
+                    <ng-template #red>
+                        <td style="color: #ff3e3e;font-weight: 600; ">{{ request.statusValue }}</td>
+                    </ng-template>
+    
+                    <ng-template #nored>
+                        <td style="color: #bd9a01;font-weight: 600 ">{{ request.statusValue }}</td>
+                    </ng-template>
+    
+                    
+                    <td>{{ request.managerFirstName }}</td>
+                    <td>{{ request.reasonForTraveling }}</td>
+                    <td>{{ request.bookingType }}</td>
+    
+                    <div *ngIf="Role === 'Manager' && request.statusValue != 'Rejected';then manager"></div>
+                    <ng-template #manager>
+                        <td><button type="button" class="btn btn-primary">Approve</button>  </td>
+                        <td><button type="button"  (click)="openPopup(request.requestID)" class="btn btn-danger">Reject</button>  </td>
+                    </ng-template>
+                    <div *ngIf="Role === 'HrTravelAdmin';then hr"></div>
+                    <ng-template #hr>
+                        
+                    </ng-template>
+                    
+                    <!-- <td>
+                        <button (click)="acceptRequest(request)">Accept</button>
+                        <button (click)="rejectRequest(request)">Reject</button>
+                        <button (click)="commentRequest(request)">Comment</button> 
+                    </td> -->
+                    <!-- uncomment the code define the methods, acceptRequest -> set Status = approved,
+                    commentRequest -> CRUD on comments Table -->
+                </tr>
+            </ng-template>
+           
+        </tbody>
+    </table>
+    
+
+
+  <div *ngIf="Value;then pop;"></div>
+  <ng-template #pop>
+
+    <body>
+        <div id="popup" class="popup-overlay">
+            <div class="popup-content">
+                <form #regForm1="ngForm" (ngSubmit)="createComment1(regForm1)">
+                <!-- <textarea rows="4" cols="50" placeholder="Enter your message" type="text" name="commentName" ngModel required> </textarea>
+                <br> -->
+                
+        <div>
+            <textarea rows="4" cols="50" placeholder="Enter your message" type="text" name="commentName" ngModel required> </textarea>
+            <!-- <label for="commentName"> Enter Comment </label> -->
+
+            <!-- <input type="text" name="commentName" ngModel required> -->
+
+           
+
+        </div>
+
+                <button id="Submit" type="submit" (click)="closePopup()">Submit</button>
+              <!-- <button id="Close"(click)="closePopup()">Close</button> -->
+            </form>
+
+            </div>
+          </div>
+        
+         
+        </body>
+  </ng-template>
+
+

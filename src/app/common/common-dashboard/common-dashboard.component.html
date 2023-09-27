@@ -1,0 +1,59 @@
+
+    <h1> Dashboard </h1>
+    <div class="container-xl">
+    
+        <div class="table-responsive">
+			<div *ngIf="successMessage" class="success-message">
+				{{successMessage}}
+			  </div>
+            <div class="table-wrapper">
+    
+                <div class="table-title">
+    
+                    <div class="row">
+    
+                        <div class="col-sm-6">
+    
+                            <h2>welcome <b>{{Name}}</b></h2>
+    
+                          </div>
+  
+                              <div class="col-sm-6">
+								<button type="button" (click)="logout()" class="btn btn-danger">LogOut</button>  
+								<div *ngIf="RoleName === 'Manager' ; then manager"></div>
+
+									<ng-template #manager>
+										<a routerLink="./getrequest" class="btn btn-success"  data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Get Requests</span></a> 
+										<a routerLink="./addrequest" class="btn btn-success"  data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>New Requests</span></a>
+									</ng-template>
+									<div *ngIf="RoleName === 'HrTravelAdmin'; then hrtraveladmin"></div>
+									<ng-template #hrtraveladmin>
+										<a routerLink="./getrequest" class="btn btn-success"  data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Get Requests</span></a> 
+										<a routerLink="./addrequest" class="btn btn-success"  data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>New Requests</span></a>
+									</ng-template>
+
+
+									<div *ngIf="RoleName === 'Employee'; then employee"></div>
+									<ng-template #employee> 
+										<a routerLink="./getrequest" class="btn btn-success"  data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Request History</span></a> 
+										<a routerLink="./addrequest" class="btn btn-success"  data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>New Requests</span></a>
+									</ng-template>
+								
+                              </div>
+                          
+                              
+  
+  
+                          </div>  
+                        
+                      </div>
+                      <router-outlet></router-outlet>  
+                   <!-- <app-get-user></app-get-user> -->
+  
+  
+                  </div>
+          </div>
+  
+    </div> 
+  
+    
